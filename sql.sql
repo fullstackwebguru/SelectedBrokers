@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v10.00 Beta1
-MySQL - 5.5.53-0ubuntu0.14.04.1 : Database - casino10
+MySQL - 5.5.53-0ubuntu0.14.04.1 : Database - brokers
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 5.5.53-0ubuntu0.14.04.1 : Database - casino10
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`casino10` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`brokers` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
-USE `casino10`;
+USE `brokers`;
 
 /*Table structure for table `auth_assignment` */
 
@@ -92,20 +92,20 @@ DROP TABLE IF EXISTS `cate_comp`;
 CREATE TABLE `cate_comp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
+  `rank` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
-  `rank` int(11) NOT NULL DEFAULT '0',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk-catecomp-category_id-category-id` (`category_id`),
   KEY `fk-catecomp-company_id-company-id` (`company_id`),
-  CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cate_comp` */
 
-insert  into `cate_comp`(`id`,`category_id`,`company_id`,`rank`,`created_at`,`updated_at`) values (8,4,3,2,1479666944,1479709739),(12,4,4,1,1480351611,1480351611);
+insert  into `cate_comp`(`id`,`category_id`,`rank`,`company_id`,`created_at`,`updated_at`) values (1,1,1,1,1485713469,1485716116),(2,1,0,2,1485716113,1485716116);
 
 /*Table structure for table `category` */
 
@@ -114,22 +114,31 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `short_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `short_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `short_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
-  `short_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `self_rank` int(11) DEFAULT NULL,
+  `status` int(2) DEFAULT '1',
+  `slider_title` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Top 10 Brokers for #name#',
+  `slider_description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `table_title` varchar(300) COLLATE utf8_unicode_ci DEFAULT 'Top 10 Brokers for #name#',
+  `table_risk` text COLLATE utf8_unicode_ci,
+  `table_risk_short` varchar(800) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `table_advisor_disclosure` varchar(800) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `how_to_choose_title` varchar(300) COLLATE utf8_unicode_ci DEFAULT 'How to Choose the Best Online Broker for #name#',
+  `how_to_choose` text COLLATE utf8_unicode_ci,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  `self_rank` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`title`,`short_title`,`description`,`short_description`,`image_url`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`self_rank`) values (1,'NONE',NULL,'none','test',NULL,'NONE','NONE','NONE',1000000,1000000,0),(4,'Test14545','stet4',NULL,'Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','fyacal2qtqh7rbig4zwd','test14545','test','test',1478803357,1479755875,1),(6,'qfeq','qefqwef',NULL,'qwfeqewfqw',NULL,'qfeq','qfeqwefqwef','qwefqwefqwef',1479754689,1479755070,2);
+insert  into `category`(`id`,`title`,`short_title`,`short_description`,`description`,`image_url`,`self_rank`,`status`,`slider_title`,`slider_description`,`table_title`,`table_risk`,`table_risk_short`,`table_advisor_disclosure`,`how_to_choose_title`,`how_to_choose`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'Forex  Trading','Forex','wefwewefewf',NULL,'k6ero4ico61amnwfmgoh',1,1,'Forex Trading #name#','Default trader','Forex Trading #name#','* Individual Brokers T&Cs Apply Risk Warning: Trading Forex (FX), Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit. Please be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk. Advertiser Disclosure: TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','Trading Forex, Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit.\r\nPlease be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk.','TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','fwefwef #name#','Because there’s so much competition in the Forex (FX) market as well as having countless brokers to choose from, it can be difficult to know which online FX Broker will be best for you. Beginners have different needs than more advanced traders, so these are a few key points we suggest keeping in mind when making your decision:\r\n\r\n**Regulation:**  \r\nEach country has its own regulatory body such as the Financial Conduct Authority (FCA), here in the UK. The regulatory body develops rules, services and programs to protect the integrity of the market, traders, and investors as well as the brokers themselves, and to help members meet regulatory responsibilities. Due to potential safety concerns regarding deposit, accounts should exclusively be opened with firms that are regulated.\r\n\r\n**Customer Service:**  \r\nOnline FX Trading takes place 24 hrs a day, so customer support should be available at all times. Ideally, you will want to speak with a live support person rather than a time-consuming auto-attendant. Perhaps give a quick call to the customer service center so you can get an idea of the type of customer service provided. Check on wait times and find out the representative’s ability to answer questions regarding spreads and leverage, their trade volume, as well as company details.\r\n\r\nAccount Types:\r\n\r\nYour ideal FX broker should be able to offer either multiple account options or an element of customizability. Look for an online Forex Broker that offers competitive spreads and easy deposits/withdrawals. Find out if there are account options specifically for beginners and if so what that account offers to benefit new traders.\r\n\r\n**Currency Pairs:**  \r\nAn online Forex Broker can provide a huge selection of forex pairs. However, it is most important is that they provide the variety of pairs that interest you. While there are many currencies available for trading, there are only a few get the majority of the attention, and as the result, trade with the highest liquidity.\r\n\r\n**Tradeable Assets:**  \r\nWhile selecting the best FX Trading Broker for you, it’s possible just to concentrate on Forex trading. However, you should keep in mind there are many types of investment alternatives offered as well, such as Bitcoin, Stocks, CFDs, ETFs, or trading in options or futures.\r\n\r\n','forex-trading','afeafaef','aefaefaefaf',1485712185,1485713965);
 
 /*Table structure for table `company` */
 
@@ -139,33 +148,59 @@ CREATE TABLE `company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `short_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `short_description` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `logo_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website_url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `rating` double NOT NULL,
   `review` text COLLATE utf8_unicode_ci,
-  `bonus_as_value` int(10) DEFAULT '0',
+  `bonus_as_value` int(255) NOT NULL DEFAULT '0',
   `bonus_offer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `feature_mobile` tinyint(1) NOT NULL DEFAULT '1',
-  `feature_instant_play` tinyint(1) NOT NULL DEFAULT '1',
-  `feature_download` tinyint(1) NOT NULL DEFAULT '1',
-  `feature_live_casino` tinyint(1) NOT NULL DEFAULT '1',
-  `feature_vip_program` tinyint(1) NOT NULL DEFAULT '1',
+  `telephone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `established` int(11) DEFAULT NULL,
+  `regulation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `min_deposit` int(255) DEFAULT NULL,
+  `max_leverage` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `spreads_from` double NOT NULL,
+  `pairs_offered` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `us_allowed` int(2) DEFAULT NULL,
+  `self_rank` int(11) DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(2) DEFAULT '1',
   `meta_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  `self_rank` int(11) NOT NULL DEFAULT '1',
-  `bonus_text_font` int(11) DEFAULT '19',
+  `button_text` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Visit Site',
+  `link_text` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Get Bonus',
+  `promotion_link_text` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Get Deal',
+  `bonus_link_heading` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#bonus# Welcome Bonus',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `company` */
 
-insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`feature_mobile`,`feature_instant_play`,`feature_download`,`feature_live_casino`,`feature_vip_program`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`self_rank`,`bonus_text_font`) values (3,0,'AFEAF','Ladbrokes Casino brings a great variety of innovative games. From slots with different themes to roulette and blackjack offered across all devices. t themes to roulette and blackjack offered across all devices.','efqefqefqefqfeqef','u1n2zpwt6r3lfoyigqmj','o7lhtkwqk87rcwyyt2li','234',4.6,'AWEFWAEFWEAFWAEF',10,'AFEAFAWEF',0,1,1,0,0,'afeaf','aWEFEWF','AEFAWEFAWEFEWAF',1479437339,1480342542,2,30),(4,0,'afe','afe','','ytuwewyplqbs1r7ewrqe','hthp3q9x5a1jboqm8us7','afeaf',3.6,'afeafafe',1434,'afe',0,0,1,1,1,'afe','aefaf','afeafafaef',1479684430,1480342447,1,30);
+insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`telephone`,`established`,`regulation`,`min_deposit`,`max_leverage`,`spreads_from`,`pairs_offered`,`us_allowed`,`self_rank`,`slug`,`status`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`button_text`,`link_text`,`promotion_link_text`,`bonus_link_heading`) values (1,0,'Company','afeaf','weffafeawfawfe','fnomzyk2gz3ufeqpnypp','ybzaikr8rofdnvt6j3es','https://google.com',5,'wefwefwefwef',14,'afeafaewf','1234234',220,'wefewf',3,'1:220',134,'324324 ave',1,1,'company',1,'fwef','wefwefewf',1485713446,1485719332,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus'),(2,0,'Company2','afaewfawef','awfeaewfawef','ozmvne938x0ntquw9vy2','d0ihsshoxrglc0fhiiyp','https://google.com',8,'afeaefawfaewf',14,'afeawef','234324',NULL,'234234324',3,NULL,12343,'1423',1,2,'company2',1,'afeaefa','afeafaewf',1485716091,1485716091,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus');
+
+/*Table structure for table `feature_company` */
+
+DROP TABLE IF EXISTS `feature_company`;
+
+CREATE TABLE `feature_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-featurecomp-company_id-company-id` (`company_id`),
+  CONSTRAINT `fk-featurecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `feature_company` */
+
+insert  into `feature_company`(`id`,`company_id`,`value`,`created_at`,`updated_at`) values (1,1,'wefwefwf',1485713458,1485713458);
 
 /*Table structure for table `guide` */
 
@@ -174,20 +209,21 @@ DROP TABLE IF EXISTS `guide`;
 CREATE TABLE `guide` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'jone_doe',
   `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `self_rank` int(11) DEFAULT NULL,
   `meta_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `guide` */
 
-insert  into `guide`(`id`,`title`,`author`,`slug`,`description`,`image_url`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'How to organize test','Jone Doe','how-to-organize-test','afeafaefaefeaf','zxejpcyu2yezmadnosk7','afeafa','afeafaefaefaefaefaef',1478882326,1478882326),(2,'Test2guide','tada','test2guide','afeafaewfaefaef','xymcje27wyl8ann5qyhp','awefawefawef','aefaefaefafe',1479744819,1479744819);
+insert  into `guide`(`id`,`title`,`author`,`slug`,`description`,`image_url`,`self_rank`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'awefawef','jone_doe','awefawef','Mark Carney, the Governor of the Bank of England, will probably not take up the three-year extension option for his term at the central bank. According to the reports by the British newspapers this weekend, there is the chance that he make the announcement about his decision as early as Thursday.\r\n\r\nCarney had noted in public that he will reach a decision by the end of the year as to if he will stay past his five-year term as originally committed to in July 2013 when he joined the Bank of England (BoE). On Thursday, he is set to hold a quarterly news conference.\r\n\r\nAs reported by The Sunday Times, Carney has been unhappy with the office of Prime Minister Theresa May. Carney recruited by and had a closer relationship with George Osborne, the predecessor of finance minister Philip Hammond.\r\n\r\nAs published in the Time’s Saturday edition, that there was a personal reason for Carney’s motivation to leave in 2018.\r\nThe Times said: “The Senior City figures believe, because they know Carney, that he is more likely to choose to head back to Canada in 2018. They added that the feelings of his family were a concern.” Also, the Times stated: “The suggestions of his leaving before 2018 were firmly rejected.” This announcement will come at the news conference on Thursday or at a future appearance in front of the committee of lawmakers which oversees the central bank.\r\n\r\nThe Bank of England declined to make a comment on the article in the Times. Instead, the BoE gave reference to the previous public statements of Carney on the topic. Carney said, last week, which his decision is a personal one as to whether he would stay, rather than considerations that are political. He stated that he needs to have some time to reach a decision.\r\n\r\nThe Sunday Times reported that the statement of Carney’s displeasure in the office of May came from the information of two senior figures. These two top figures had known Carney since 2013 when he moved to Britain. Someone, described as being a friend of Carney, was quoted by the Sunday Times saying about the Office of the Prime Minister, “I am not convinced that he has been very impressed by the professionalism of the office of the Prime Minister.” The government officials did not anticipate an announcement by Carnet with regards to his departures as early as Thursday, said the Sunday Times. Friends of Carney believe that he will stay in his position until 2018.\r\n\r\n','wgvh9apdewtroojpz4ik',1,'afeafaw','awefaewf',1485536788,1485723022),(2,'wefwefwe','jone_doe','wefwefwe','Mark Carney, the Governor of the Bank of England, will probably not take up the three-year extension option for his term at the central bank. According to the reports by the British newspapers this weekend, there is the chance that he make the announcement about his decision as early as Thursday.\r\n\r\nCarney had noted in public that he will reach a decision by the end of the year as to if he will stay past his five-year term as originally committed to in July 2013 when he joined the Bank of England (BoE). On Thursday, he is set to hold a quarterly news conference.\r\n\r\nAs reported by The Sunday Times, Carney has been unhappy with the office of Prime Minister Theresa May. Carney recruited by and had a closer relationship with George Osborne, the predecessor of finance minister Philip Hammond.\r\n\r\nAs published in the Time’s Saturday edition, that there was a personal reason for Carney’s motivation to leave in 2018.\r\nThe Times said: “The Senior City figures believe, because they know Carney, that he is more likely to choose to head back to Canada in 2018. They added that the feelings of his family were a concern.” Also, the Times stated: “The suggestions of his leaving before 2018 were firmly rejected.” This announcement will come at the news conference on Thursday or at a future appearance in front of the committee of lawmakers which oversees the central bank.\r\n\r\nThe Bank of England declined to make a comment on the article in the Times. Instead, the BoE gave reference to the previous public statements of Carney on the topic. Carney said, last week, which his decision is a personal one as to whether he would stay, rather than considerations that are political. He stated that he needs to have some time to reach a decision.\r\n\r\nThe Sunday Times reported that the statement of Carney’s displeasure in the office of May came from the information of two senior figures. These two top figures had known Carney since 2013 when he moved to Britain. Someone, described as being a friend of Carney, was quoted by the Sunday Times saying about the Office of the Prime Minister, “I am not convinced that he has been very impressed by the professionalism of the office of the Prime Minister.” The government officials did not anticipate an announcement by Carnet with regards to his departures as early as Thursday, said the Sunday Times. Friends of Carney believe that he will stay in his position until 2018.\r\n\r\n','ufne4ley5bbkhcgnbik3',3,'qwfwe','fqwefqwefweqf',1485719995,1485723037),(3,'qwefwefewf','jone_doe','qwefwefewf','Mark Carney, the Governor of the Bank of England, will probably not take up the three-year extension option for his term at the central bank. According to the reports by the British newspapers this weekend, there is the chance that he make the announcement about his decision as early as Thursday.\r\n\r\nCarney had noted in public that he will reach a decision by the end of the year as to if he will stay past his five-year term as originally committed to in July 2013 when he joined the Bank of England (BoE). On Thursday, he is set to hold a quarterly news conference.\r\n\r\nAs reported by The Sunday Times, Carney has been unhappy with the office of Prime Minister Theresa May. Carney recruited by and had a closer relationship with George Osborne, the predecessor of finance minister Philip Hammond.\r\n\r\nAs published in the Time’s Saturday edition, that there was a personal reason for Carney’s motivation to leave in 2018.\r\nThe Times said: “The Senior City figures believe, because they know Carney, that he is more likely to choose to head back to Canada in 2018. They added that the feelings of his family were a concern.” Also, the Times stated: “The suggestions of his leaving before 2018 were firmly rejected.” This announcement will come at the news conference on Thursday or at a future appearance in front of the committee of lawmakers which oversees the central bank.\r\n\r\nThe Bank of England declined to make a comment on the article in the Times. Instead, the BoE gave reference to the previous public statements of Carney on the topic. Carney said, last week, which his decision is a personal one as to whether he would stay, rather than considerations that are political. He stated that he needs to have some time to reach a decision.\r\n\r\nThe Sunday Times reported that the statement of Carney’s displeasure in the office of May came from the information of two senior figures. These two top figures had known Carney since 2013 when he moved to Britain. Someone, described as being a friend of Carney, was quoted by the Sunday Times saying about the Office of the Prime Minister, “I am not convinced that he has been very impressed by the professionalism of the office of the Prime Minister.” The government officials did not anticipate an announcement by Carnet with regards to his departures as early as Thursday, said the Sunday Times. Friends of Carney believe that he will stay in his position until 2018.\r\n\r\n','ghehyuoeu4xmfd3z6jfg',2,'wfwefw','wefwefewf',1485720009,1485723030),(4,'qwfwef','jone_doe','qwfwef','qefqwefewf','sjnfjvgnbgboe6cvnlg9',4,'qfeqef','qfewefwef',1485720030,1485720030),(5,'1535325','jone_doe','1535325','wfwefwf','cq64w3dbgilqafmokwfs',5,'qfwef','wfwefewf',1485720055,1485720055);
 
 /*Table structure for table `migration` */
 
@@ -201,7 +237,7 @@ CREATE TABLE `migration` (
 
 /*Data for the table `migration` */
 
-insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1478802508),('m161109_180719_create_category_table',1478802508),('m161109_190347_create_cate_comp_table',1478802508),('m161110_170051_create_guide_table',1478802508),('m161110_172805_create_page_table',1478802508),('m161110_175240_create_theme_table',1478874280),('m161120_210104_create_property_table',1479677224),('m161120_210544_create_property_casino_table',1479677224),('m161120_210706_create_property_category_table',1479677224),('m161120_215912_create_relationship_prop_cate_comp',1479679340),('m161120_220259_create_relationship_prop_cate_comp1',1479679457);
+insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1485712138),('m161109_180719_create_category_table',1485712138),('m161109_190347_create_cate_comp_table',1485712138),('m161110_170051_create_guide_table',1485531271),('m161110_172805_create_page_table',1485531051),('m161120_210544_create_feature_company_table',1485712138);
 
 /*Table structure for table `page` */
 
@@ -218,102 +254,11 @@ CREATE TABLE `page` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `page` */
 
-insert  into `page`(`id`,`page_id`,`title`,`slug`,`description`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'about','About','about','about','about','keywords',1476880763,1476880763),(2,'home','Home1','home','Home','about234234234234','home1',1476880763,1477498675),(3,'contact','Contact','contact','Contact','about','about',1476880763,1476880763),(4,'tos','Tos','tos','**ateataewwe**','meta','keywords',1476880763,1477498722),(5,'privacy','Privacy','privacy','Privacy\r\n','meta','meta',1476880763,1476880763),(6,'disclaimer','Disclaimer','disclaimer','Disclaimer','meta','meta',1476880788,1476880788),(8,'categories','categories','categories','afeaefe','categories','categories',1476880788,1476880788),(9,'compare','Compare','compare','**Quality** Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\nPrice Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.','compare','compare',1484353345,1478881020),(10,'guides','Guides','guide','guide','guide','guide',1484353346,1484353346),(11,'casinos','Casinos','casinos','casinos','casinos','casinos',1484353347,1484353347);
-
-/*Table structure for table `property` */
-
-DROP TABLE IF EXISTS `property`;
-
-CREATE TABLE `property` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `property` */
-
-insert  into `property`(`id`,`title`,`created_at`,`updated_at`) values (3,'Type Of Games',1479677868,1479678120),(4,'Software',1479678032,1479678135),(5,'Support',1479678036,1479678144),(6,'Currencies',1479678151,1479678151),(7,'Languages',1479678160,1479678160);
-
-/*Table structure for table `property_casino` */
-
-DROP TABLE IF EXISTS `property_casino`;
-
-CREATE TABLE `property_casino` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `property_id` int(11) NOT NULL,
-  `company_id` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk-propcate-company_id-company-id` (`company_id`),
-  KEY `fk-propcate-property_id-property-id` (`property_id`),
-  CONSTRAINT `fk-propcate-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk-propcate-property_id-property-id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `property_casino` */
-
-insert  into `property_casino`(`id`,`property_id`,`company_id`,`value`,`created_at`,`updated_at`) values (4,4,4,'wefwef',1479684536,1479684536),(6,3,4,'wefewfe',1479684556,1479684556),(7,5,4,'qwefqeff',1479684617,1479684617);
-
-/*Table structure for table `property_category` */
-
-DROP TABLE IF EXISTS `property_category`;
-
-CREATE TABLE `property_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `property_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `position` int(11) NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk-propcomp-category_id-category-id` (`category_id`),
-  KEY `fk-propcomp-property_id-property-id` (`property_id`),
-  CONSTRAINT `fk-propcomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk-propcomp-property_id-property-id` FOREIGN KEY (`property_id`) REFERENCES `property` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `property_category` */
-
-insert  into `property_category`(`id`,`property_id`,`category_id`,`position`,`created_at`,`updated_at`) values (1,7,4,0,1479707770,1479707770),(2,6,4,1,1479707778,1479707778);
-
-/*Table structure for table `theme` */
-
-DROP TABLE IF EXISTS `theme`;
-
-CREATE TABLE `theme` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `banner_image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `banner_heading` text COLLATE utf8_unicode_ci,
-  `banner_subheading` text COLLATE utf8_unicode_ci,
-  `how_to_find_best` text COLLATE utf8_unicode_ci,
-  `hwork_title1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_title2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_title3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_title4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_description1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_description2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_description3` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `hwork_description4` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  `contact_email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contact_phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contact_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `theme` */
-
-insert  into `theme`(`id`,`category_id`,`banner_image`,`banner_heading`,`banner_subheading`,`how_to_find_best`,`hwork_title1`,`hwork_title2`,`hwork_title3`,`hwork_title4`,`hwork_description1`,`hwork_description2`,`hwork_description3`,`hwork_description4`,`created_at`,`updated_at`,`contact_email`,`contact_phone`,`contact_address`) values (1,'4',NULL,'afeafe','aaefaef','afeafa','afe','abe','befe','afe','afe','afe','afefe','afeafe',14141414,1479710173,'test@test1.com','123456789','random address');
+insert  into `page`(`id`,`page_id`,`title`,`slug`,`description`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'home','home','home','home','home','home',1234234324,1234234324),(2,'categories','categories','categories','categories','categories','categories',134234324,1423423432),(3,'reviews','reviews','reviews','afeafe','reviews','reviews',2147483647,2147483647),(4,'news','news','news','3f2f2f3f','news','news',23432432,2147483647),(5,'about','about','about','about','about','about',324324324,2147483647),(6,'privacy','privacy','privacy','privacy','privacy','privacy',2147483647,2147483647),(7,'tos','Tos','Tos','Tos','Tos','Tos',324234234,234324234),(8,'disclaimer','disclaimer','disclaimer','disclaimer','disclaimer','disclaimer',324324234,234324234),(9,'contact','contact','contact','contact','contact','contact',234234324,2147483647);
 
 /*Table structure for table `user` */
 
