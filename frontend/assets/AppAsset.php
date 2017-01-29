@@ -14,10 +14,12 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/bootstrap.css',
         'css/custom.css',
+        'css/bootstrap-sortable.css'
     ];
     public $js = [
         'js/jquery.js',
         'js/bootstrap.js',
+        'js/bootstrap-sortable.js',
         'js/review.js'
     ];
     public $depends = [
