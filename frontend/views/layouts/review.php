@@ -46,8 +46,8 @@ AppAsset::register($this);
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script',' https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-87288532-1', 'auto');
-// ga('create', 'UA-78699744-2', 'auto');
+// ga('create', 'UA-87288532-1', 'auto');
+ga('create', 'UA-90817129-1', 'auto');
 ga('send', 'pageview');
 
 </script>
@@ -62,7 +62,7 @@ ga('send', 'pageview');
 */
 var trackOutboundLink = function(casino, url, pos) {
    var label = pos ? (casino + ' : ' + pos)  : casino;
-   ga('send', 'event', 'outbound', 'visit_casino', label, {
+   ga('send', 'event', 'outbound', 'visit_broker', label, {
         'transport': 'beacon',
         'hitCallback': function(){
             window.open( url,  '_blank');
