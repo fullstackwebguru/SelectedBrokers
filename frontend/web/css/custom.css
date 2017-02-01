@@ -216,7 +216,7 @@ header.carousel .fill {
     text-decoration: none;
 }
 .logo-td img {
-    width: 70%;
+    /*width: 70%;*/
     height: auto;
 }
 .logo-td {
@@ -924,7 +924,7 @@ footer {
         float: none;
 }
     .logo-td img {
-        width: 70%;
+        /*width: 70%;*/
         height: auto;
     }
     .rank-td, .logo-td {

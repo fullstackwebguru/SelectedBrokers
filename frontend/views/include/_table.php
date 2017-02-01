@@ -37,7 +37,7 @@ use yii\helpers\Url;
                         }
 
                         $compIndex++;
-                        $companyImage = cloudinary_url($company->logo_url, array("width" => 152, "height" => 97, "crop" => "fill"));
+                        $companyImage = cloudinary_url($company->logo_url, array("width" => 115, "height" => 73, "crop" => "fill"));
                     ?>
                                     <tr>
                                       <td class="rank-td" data-value="<?= $catComp->rank+1 ?>"><?= $catComp->rank+1 ?></td>
