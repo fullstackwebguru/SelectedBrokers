@@ -74,6 +74,8 @@ class Category extends ActiveRecord
             [['title'], 'string'],
             [['self_rank'], 'integer'],
             [['slider_description', 'slider_title', 'table_title', 'table_risk', 'table_risk_short', 'table_advisor_disclosure','how_to_choose_title', 'how_to_choose'], 'string'],
+            [['banner_heading', 'banner_subheading', 'banner_background'], 'string'],
+            [['show_deposit'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
             [['temp_image'], 'file', 'extensions'=>'jpg, gif, png'],

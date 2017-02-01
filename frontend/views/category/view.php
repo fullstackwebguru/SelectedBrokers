@@ -25,12 +25,15 @@ $this->registerMetaTag([
 
 Top10JsAsset::register($this);
 
+
+$backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_url($category->banner_background, array("width" => 1560, "height" => 233, "crop" => "fill"));
+
 ?>
 
 <!-- Page Content -->
    
     
-       <div class="row" id="forex-header">
+       <div class="row" id="forex-header" <?= $backgroundImage ? 'style="background-image: url('. $backgroundImage .');"' : ''?>>
            <div class="container">
             <div class="col-lg-12">
                 <h1 class="page-header"><?= $category->getTableHeading() ?></h1>

@@ -48,6 +48,11 @@ $attributes = [
         'value'=>$model->bonus_offer
     ],
     [
+        'label' => 'Bonus Offer Small',
+        'attribute'=>'bonus_offer_desc', 
+        'value'=>$model->bonus_offer_desc
+    ],
+    [
         'attribute'=>'short_description', 
         'value'=>$model->short_description
     ],

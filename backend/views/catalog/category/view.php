@@ -85,6 +85,33 @@ $attributes = [
         'value'=>$model->table_advisor_disclosure
     ],
     [
+        'attribute'=>'show_deposit',
+        'format'=>'raw',
+        'value'=>$model->show_deposit ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
+        'group'=>true,
+        'label'=>'Backgrund and Heading',
+        'rowOptions'=>['class'=>'info'],
+    ],
+    [
+        'attribute'=>'banner_heading', 
+        'value'=>$model->banner_heading,
+        'type'=>DetailView::INPUT_TEXTAREA
+    ],
+    [
+        'attribute'=>'banner_subheading', 
+        'value'=>$model->banner_subheading,
+        'type'=>DetailView::INPUT_TEXTAREA
+    ],
+    [
         'group'=>true,
         'label'=>'How to choose',
         'rowOptions'=>['class'=>'info']
@@ -136,6 +163,22 @@ if ($model->image_url) {
                 'style' => 'height:150px; width:100px;',
             ],
             'url' => Url::toRoute(['detach', 'id'=>$model->id])
+    ];
+}
+
+$allBannerImages = [];
+$allBannerImageConfig = [];
+
+if ($model->banner_background != 'default') {
+    // $allBannerImages[] = Yii::$app->imageCache->img('@mainUpload/' . $model->image_url, '200x150', ['class' => 'file-preview-image']);
+    $allBannerImages[] = '<img src="' . cloudinary_url($model->banner_background, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
+
+    $allBannerImageConfig[] =[   
+            'caption' => 'Current Image',
+            'frameAttr'=> [
+                'style' => 'height:150px; width:100px;',
+            ],
+            'url' => Url::toRoute(['detachbanner', 'id'=>$model->id])
     ];
 }
 
@@ -352,6 +395,36 @@ $this->registerJs(
                 'showUpload' => false,
                 'previewFileType' => 'image',
                 'uploadUrl' => Url::toRoute(['upload', 'id'=>$model->id]),
+            ]
+        ]) ?>
+    </div>
+    </div>
+<div>
+
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box-header with-border">
+        <h3 class="box-title">Table Backgorund</h3>
+
+        <?= FileInput::widget([
+            'name'=>'new_banner_image',
+            'options' => [
+                'id' => 'input-911'
+            ],
+            'pluginOptions' => [
+                'uploadAsync' =>  false,
+                'maxFileCount' =>  1,
+                'initialPreview' => $allBannerImages,
+                'initialPreviewConfig' => $allBannerImageConfig,
+                'initialPreviewAsData' => false,
+                'overwriteInitial' => true,
+                'autoReplace' => true,
+                'showClose' => false,
+                'showBrowse' => true,
+                'showRemove' => false,
+                'showUpload' => false,
+                'previewFileType' => 'image',
+                'uploadUrl' => Url::toRoute(['uploadbanner', 'id'=>$model->id]),
             ]
         ]) ?>
     </div>

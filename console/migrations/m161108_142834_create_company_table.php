@@ -31,6 +31,7 @@ class m161108_142834_create_company_table extends Migration
             'review' => $this->text(),
             'bonus_as_value' => $this->integer(255)->notNull()->defaultValue(0),
             'bonus_offer' => $this->string(255),
+            'bonus_offer_desc' => $this->string(255),
             'telephone' => $this->string(255),
             'established' => $this->integer(11),
             'regulation' => $this->string(255),

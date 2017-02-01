@@ -19,6 +19,8 @@
                     ['label' => 'Categories', 'icon' => 'fa fa-file-code-o', 'url' => ['/catalog/category'],],
                     ['label' => 'Comapnies', 'icon' => 'fa fa-file-code-o', 'url' => ['/catalog/company'],],
                     ['label' => 'Guides', 'icon' => 'fa fa-file-code-o', 'url' => ['/catalog/guide'],],
+                    ['label' => 'Setting', 'options' => ['class' => 'header']],
+                    ['label' => 'Regulations', 'icon' => 'fa fa-gear', 'url' => ['/regulation']],
                     [
                         'label' => 'Pages',
                         'icon' => 'fa fa-book',

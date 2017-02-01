@@ -43,6 +43,9 @@ use yii\helpers\Url;
                                         </td>
                                       <td class="mindep-td" data-value="<?= $company->min_deposit ?>">£<?= $company->min_deposit ?></td>
                                       <td class="promo-td" data-value="0">
+                                          <?php if ($company->bonus_offer_desc) {  ?>
+                                          <p class="promo-small"><?= $company->bonus_offer_desc ?></p>
+                                          <?php } ?>
                                           <p class="ammount"><?= $company->bonus_offer ?></p>
                                           <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-deal"> <?= $company->promotion_link_text ?> </a>
                                         </td>

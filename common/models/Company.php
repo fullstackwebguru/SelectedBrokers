@@ -83,7 +83,7 @@ class Company extends ActiveRecord
             [['rating'], 'required'],
             [['self_rank','status'], 'integer'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
-            [['bonus_offer', 'telephone','regulation','max_leverage','pairs_offered'], 'string'],
+            [['bonus_offer','bonus_offer_desc', 'telephone','regulation','max_leverage','pairs_offered'], 'string'],
             [['rating'], 'number', 'max' => 10],
             [['min_deposit'], 'number'],
             [['bonus_as_value','established', 'spreads_from','us_allowed'], 'integer'],

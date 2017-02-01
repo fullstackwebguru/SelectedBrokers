@@ -5,16 +5,16 @@ use kartik\grid\GridView;
 use yii\helpers\Url;
 
 
-$this->title = "Additional Fields Setting";
-$this->params['breadcrumbs'][] = ['label' => 'Fields Setting', 'url' => ['index']];
+$this->title = "Regulations";
+$this->params['breadcrumbs'][] = ['label' => 'Regulations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 
-//field additional information
+//regulation additional information
 //
 $viewMsg = 'Not applicable';
 $updateMsg = 'Not applicable';
-$deleteMsg = 'Delete field information';
+$deleteMsg = 'Delete regulation information';
 
 $gridColumns = [
     ['class' => 'kartik\grid\SerialColumn'],
@@ -72,13 +72,13 @@ $gridColumns = [
         ],
         'toolbar'=> [
             ['content'=>
-                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>'Add', 'id'=>'add_fieldinfos', 'class'=>'showModalButton btn btn-success', 'value'=>Url::toRoute(['addinfo'])]) 
+                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>'Add', 'id'=>'add_regulationinfos', 'class'=>'showModalButton btn btn-success', 'value'=>Url::toRoute(['addinfo'])]) 
             ],
         ],
         'pjaxSettings' => [
             'neverTimeout' => true,
             'options' => [
-                'id' => 'fieldinfos'
+                'id' => 'regulationinfos'
             ]
         ]
     ]);?>
@@ -103,7 +103,7 @@ $gridColumns = [
     $this->registerJs('
 
         $(document).ready(function(){ 
-            $(document).on("click", "#add_fieldinfos", function() {
+            $(document).on("click", "#add_regulationinfos", function() {
                 $("#addFieldInfoModal").modal("show")
                     .find("#modalContent")
                     .load($(this).attr("value"));

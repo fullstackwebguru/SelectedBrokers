@@ -40,7 +40,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank', 'uploadbanner', 'detachbanner'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -146,8 +146,12 @@ class CategoryController extends Controller
     public function actionDetachbanner($id) {
         $model = $this->findModel($id);
         $output = [];
-        \Cloudinary\Uploader::destroy($model->banner_icon);
-        $model->banner_icon = '';
+
+        if ($model->banner_background != 'default') {
+            \Cloudinary\Uploader::destroy($model->banner_background);
+        }
+
+        $model->banner_background = 'default';
         $model->save();
         echo json_encode($output);
     }
@@ -165,12 +169,12 @@ class CategoryController extends Controller
             $uploadResult = \Cloudinary\Uploader::upload($image->tempName);
 
             if (isset($uploadResult['public_id'])) {
-                $banner_icon = $uploadResult['public_id'];
-                $model->banner_icon = $banner_icon;
+                $banner_background = $uploadResult['public_id'];
+                $model->banner_background = $banner_background;
 
                 $model->save();
 
-                $allImages[] = '<img src="' . cloudinary_url($banner_icon, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
+                $allImages[] = '<img src="' . cloudinary_url($banner_background, array("width" => 377, "height" => 220, "crop" => "fill")) .'" class="file-preview-image">';
 
                 $allImageConfig[] =[   
                         'caption' => 'Image',
