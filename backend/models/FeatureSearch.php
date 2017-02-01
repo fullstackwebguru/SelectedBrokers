@@ -20,7 +20,7 @@ class FeatureSearch extends Feature
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'company_id','created_at', 'updated_at'], 'integer'],
             [['value', 'slug'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class FeatureSearch extends Feature
         // grid filtering conditions
         $where = [
             'id' => $this->id,
+            'company_id' => $this->company_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
