@@ -97,6 +97,18 @@ $attributes = [
         ],
     ],
     [
+        'attribute'=>'show_regulation',
+        'format'=>'raw',
+        'value'=>$model->show_regulation ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'group'=>true,
         'label'=>'Backgrund and Heading',
         'rowOptions'=>['class'=>'info'],
@@ -261,20 +273,19 @@ $gridColumns = [
     ],
 ];
 
-//field additional information
-//
-//
-$deleteFieldMsg = 'Delete field information';
 
-$fieldGridColumns = [
+
+$deleteRegMsg = 'Delete Regulation';
+
+$regulationGridColumns = [
     ['class' => 'kartik\grid\SerialColumn'],
     [
-        'attribute' => 'property_id',
-        'label' => 'Field',
+        'attribute' => 'regulation_id',
+        'label' => 'Regulation',
         'vAlign'=>'middle',
         'width' => '30%',
         'value'=>function ($model, $key, $index, $widget) { 
-             return $model->property->title;
+             return $model->regulation->title;
         },
     ],
     [
@@ -284,12 +295,12 @@ $fieldGridColumns = [
         'template' => '{delete}',
         'urlCreator' => function($action, $model, $key, $index) { 
             if ($action == 'delete') {
-                return Url::toRoute(['deletefield', 'id'=>$model->category_id, 'fieldId'=>$model->id]);
+                return Url::toRoute(['deleteregulation', 'id'=>$model->category_id, 'regId'=>$model->id]);
             } else {
                 return '';
             }
         },
-        'deleteOptions'=>['title'=>$deleteFieldMsg, 'data-toggle'=>'tooltip'], 
+        'deleteOptions'=>['title'=>$deleteRegMsg, 'data-toggle'=>'tooltip'], 
     ],
 ];
 
@@ -371,6 +382,49 @@ $this->registerJs(
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box-header with-border">
+    <h3 class="box-title">Regulations</h3>
+
+    <?= GridView::widget([
+        'dataProvider' => $regulationDataProvider,
+        'columns' => $regulationGridColumns,
+        'toolbar'=> false,
+        'export' => false,
+        'containerOptions'=>['style'=>'overflow: auto'], // only set when $responsive = false
+        'headerRowOptions'=>['class'=>'kartik-sheet-style'],
+        'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
+        'pjax' => true,
+        'bordered' => true,
+        'striped' => false,
+        'condensed' => false,
+        'responsive' => true,
+        'showFooter' => false,
+        'hover' => true,
+        'showPageSummary' => false,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => false,
+        ],
+        'toolbar'=> [
+            ['content'=>
+                Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type'=>'button', 'title'=>'Add', 'id'=>'add_regulationinfos', 'class'=>'showModalButton btn btn-success', 'value'=>Url::toRoute(['addregulation', 'id'=>$model->id])]) 
+            ],
+        ],
+        'pjaxSettings' => [
+            'neverTimeout' => true,
+            'options' => [
+                'id' => 'regulationinfos'
+            ]
+        ]
+    ]);?>
+
+    </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-xs-12">
     <div class="box-header with-border">
@@ -432,23 +486,24 @@ $this->registerJs(
 <div>
 
 
+
 <?php
     yii\bootstrap\Modal::begin([
-        'header' => 'Add Field Info',
-        'id'=>'addFieldInfoModal',
+        'header' => 'Add Regulation Info',
+        'id'=>'addRegulationModal',
         'class' =>'modal',
         'size' => 'modal-md',
     ]);
-        echo "<div class='modalContent' id='modalContent'></div>";
+        echo "<div class='regulationModalContent' id='regulationModalContent'></div>";
     yii\bootstrap\Modal::end();
 
         //js code:
     $this->registerJs('
 
         $(document).ready(function(){ 
-            $(document).on("click", "#add_fieldinfos", function() {
-                $("#addFieldInfoModal").modal("show")
-                    .find("#modalContent")
+            $(document).on("click", "#add_regulationinfos", function() {
+                $("#addRegulationModal").modal("show")
+                    .find("#regulationModalContent")
                     .load($(this).attr("value"));
             });
         });

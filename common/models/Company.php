@@ -137,6 +137,11 @@ class Company extends ActiveRecord
         return $this->hasMany(CateComp::className(), ['company_id' => 'id']);
     }
 
+    public function getRegulComps()
+    {
+        return $this->hasMany(RegulComp::className(), ['company_id' => 'id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

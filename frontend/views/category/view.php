@@ -46,7 +46,30 @@ $backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_u
        <div class="row">
             <div class="container" id="toplist-table">
                 <div class="col-lg-12">
-                    
+                
+                <p><?= $category->banner_heading ?> </p>
+                <?php if ($category->banner_subheading)  { ?>
+                <p id="category-readmore" class="read-more">read more ...</p>
+                <p id="category-subheading" style="display: none;"><?= $category->banner_subheading ?></p>
+                <?php } ?>
+
+                <div class="clearfix"> </div>
+
+                <?php 
+                if (count($category->regulCates) > 0) {
+                ?>
+
+                 <div class="table-filters">
+                    <span class="filter-info"><i class="fa fa-filter" aria-hidden="true"></i>Filter by regulations</span>
+                    <select id="reg-filter" class="selectpicker">
+                      <option value="0" <?= !$filterSelected ? 'selected' : '' ?> >None</option>
+                      <?php foreach($category->regulCates as $regulCate) { ?>
+                      <option <?= $filterSelected == $regulCate->regulation_id ? 'selected' : '' ?> value="<?=$regulCate->regulation_id ?>"><?= $regulCate->regulation->title ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+
+                  <?php } ?>
                     
 <?= $this->render('../include/_table', [
     'category' => $category,
@@ -68,4 +91,22 @@ $backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_u
         </div> 
 
 
+<?php
 
+$this->registerJs(
+   '$(document).ready(function(){ 
+
+        var currentBaseUrl = "' . Url::current(['filter'=>null]) . '";
+        $(document).on("change", "#reg-filter", function(e, id) {
+            var id = $("#reg-filter").val();
+
+            if (id >0 ) {
+              window.location.href = currentBaseUrl + "?filter="+id;
+            } else {
+              window.location.href = currentBaseUrl;
+            }
+        });
+    });'
+);
+
+?>

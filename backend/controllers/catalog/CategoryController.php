@@ -10,6 +10,10 @@ use backend\models\CategorySearch;
 use backend\models\CateCompSearch;
 use backend\models\CompanySearch;
 
+use backend\models\RegulCateSearch;
+use common\models\Regulation;
+use common\models\RegulCate;
+
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,7 +44,7 @@ class CategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank', 'uploadbanner', 'detachbanner'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload','addinfo','deleteinfo','position','rank', 'uploadbanner', 'detachbanner','addregulation','deleteregulation'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -263,6 +267,52 @@ class CategoryController extends Controller
     }
 
     /**
+     * Add Regulations 
+     * @return mixed
+     */
+    
+    public function actionAddregulation($id) {
+
+        $categoryModel = $this->findModel($id);
+        $currentRegulations = [];
+        if (count($categoryModel->regulCates) > 0) {
+            foreach ($categoryModel->regulCates as $regulCate) {
+                $currentRegulations[] = $regulCate->regulation_id;
+            }
+        }
+        $regulations = Regulation::find()->orderBy('title')->andFilterWhere(['not in', 'id', $currentRegulations])->asArray()->all();
+        
+        $model = new RegulCate();
+        $model->category_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->category_id]);
+        }elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_regform', [
+                        'model' => $model,
+                        'regulations' => $regulations
+            ]);
+        } else {
+            return $this->render('_regform', [
+                        'model' => $model,
+                        'regulations' => $regulations
+            ]);
+        }
+    }
+
+    /**
+     * Delete Product Info to product
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteregulation($id, $regId) {
+        $model = $this->findModel($id);
+        RegulCate::findOne($regId)->delete();
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+
+    /**
      * Displays a single Category model.
      * @param integer $id
      * @return mixed
@@ -289,6 +339,10 @@ class CategoryController extends Controller
         $searchModel->category_id = $id;
         $dataProvider = $searchModel->search([]);
 
+        $regulSearchModel = new RegulCateSearch();
+        $regulSearchModel->category_id = $id;
+        $regulDataProvider = $regulSearchModel->search([]);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -303,6 +357,7 @@ class CategoryController extends Controller
                 'model' => $model,
                 'viewMode' => $viewMode,
                 'dataProvider' => $dataProvider,
+                'regulationDataProvider' => $regulDataProvider
             ]);
         }
     }

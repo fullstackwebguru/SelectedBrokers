@@ -8,6 +8,10 @@ use common\models\Company;
 use backend\models\CompanySearch;
 use common\models\Feature;
 use backend\models\FeatureSearch;
+use backend\models\RegulCompSearch;
+use common\models\Regulation;
+use common\models\RegulComp;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -37,7 +41,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo','addinfo','deleteinfo','position'],
+                        'actions' => ['index', 'create','view', 'update', 'delete' ,'detach', 'upload', 'delogo', 'uplogo','addinfo','deleteinfo','position', 'addregulation','deleteregulation'],
                         'roles' => ['updateCatalog']
                     ]
                 ]
@@ -96,6 +100,43 @@ class CompanyController extends Controller
     {
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isAjax && Yii::$app->request->post('hasEditable')) {
+            $fieldId = Yii::$app->request->post('editableKey');
+            $model = Feature::findOne($fieldId);
+
+            $out = ['output'=>'', 'message'=>''];
+            $posted = current(Yii::$app->request->post('Feature'));
+            $post = ['Feature' => $posted];
+
+            if ($model->load($post) && $model->save()) {
+                $out['message'] = '';
+            } else {
+                $out['message'] = 'Error in request';
+            }
+
+            echo Json::encode($out);
+            return;
+        }
+
+        if (Yii::$app->request->isAjax) {
+            if (Yii::$app->request->post('kvdelete')) {
+                $this->findModel($id)->delete();
+                echo Json::encode([
+                    'success' => true,
+                    'messages' => [
+                        'kv-detail-info' => 'The company # ' . $id . ' was successfully deleted. ' . 
+                            Html::a('<i class="glyphicon glyphicon-hand-right"></i>  Click here', 
+                                ['index'], ['class' => 'btn btn-sm btn-info']) . ' to proceed.'
+                    ]
+                ]);
+                return;
+            }
+        }
+
+        $regulSearchModel = new RegulCompSearch();
+        $regulSearchModel->company_id = $id;
+        $regulDataProvider = $regulSearchModel->search([]);
+
         $searchModel = new FeatureSearch();
         $searchModel->company_id = $id;
         $dataProvider = $searchModel->search([]);
@@ -105,7 +146,8 @@ class CompanyController extends Controller
         } else {
             return $this->render('view', [
                 'model' => $model,
-                'dataProvider' => $dataProvider
+                'dataProvider' => $dataProvider,
+                'regulationDataProvider' => $regulDataProvider
             ]);
         }
     }
@@ -247,6 +289,52 @@ class CompanyController extends Controller
         Feature::findOne($infoId)->delete();
         return $this->redirect(['view', 'id' => $model->id]);
     }
+
+    /**
+     * Add Regulations 
+     * @return mixed
+     */
+    
+    public function actionAddregulation($id) {
+
+        $brokerModel = $this->findModel($id);
+        $currentRegulations = [];
+        if (count($brokerModel->regulComps) > 0) {
+            foreach ($brokerModel->regulComps as $regulComp) {
+                $currentRegulations[] = $regulComp->regulation_id;
+            }
+        }
+        $regulations = Regulation::find()->orderBy('title')->andFilterWhere(['not in', 'id', $currentRegulations])->asArray()->all();
+        
+        $model = new RegulComp();
+        $model->company_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->company_id]);
+        }elseif (Yii::$app->request->isAjax) {
+            return $this->renderAjax('_regform', [
+                        'model' => $model,
+                        'regulations' => $regulations
+            ]);
+        } else {
+            return $this->render('_regform', [
+                        'model' => $model,
+                        'regulations' => $regulations
+            ]);
+        }
+    }
+
+    /**
+     * Delete Product Info to product
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDeleteregulation($id, $regId) {
+        $model = $this->findModel($id);
+        RegulComp::findOne($regId)->delete();
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
 
 
     /**

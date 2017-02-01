@@ -75,7 +75,7 @@ class Category extends ActiveRecord
             [['self_rank'], 'integer'],
             [['slider_description', 'slider_title', 'table_title', 'table_risk', 'table_risk_short', 'table_advisor_disclosure','how_to_choose_title', 'how_to_choose'], 'string'],
             [['banner_heading', 'banner_subheading', 'banner_background'], 'string'],
-            [['show_deposit'], 'integer'],
+            [['show_deposit','show_regulation'], 'integer'],
             [['description', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
             [['temp_image'], 'safe'],
             [['temp_image'], 'file', 'extensions'=>'jpg, gif, png'],
@@ -121,9 +121,23 @@ class Category extends ActiveRecord
         return $this->hasMany(CateComp::className(), ['category_id' => 'id']);
     }
 
-    public function getCateCompsSortByRank()
+    public function getRegulCates()
     {
-        $query = $this->getCateComps()->joinWith('category')->joinWith('company')->orderBy('rank ASC');
+        return $this->hasMany(RegulCate::className(), ['category_id' => 'id']);
+    }
+
+    public function getCateCompsSortByRank($filter)
+    {
+        $subQuery = RegulComp::find()->select('company_id, count(*) as regcount')->where($filter)->groupBy('company_id');
+        $query = $this->getCateComps()->leftJoin(['T' => $subQuery], 'T.company_id = cate_comp.company_id')->where(['>', 'T.regcount', '0'])->orderBy('rank ASC');
+
+        // var_dump($query->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);exit();
+        return $query->all();
+    }
+
+    public function getCateCompsNoFilterSorByRank()
+    {
+        $query = $this->getCateComps()->orderBy('rank ASC');
         return $query->all();
     }
 

@@ -12,12 +12,14 @@ class Top10JsAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        'css/jBox.css'
+        'css/jBox.css',
+        'css/bootstrap-select.min.css'
     ];
 
     public $js = [
         'js/jBox.min.js',
-
+        'js/bootstrap-select.min.js',
+        'js/category.js'
     ];
     
     public $depends = [

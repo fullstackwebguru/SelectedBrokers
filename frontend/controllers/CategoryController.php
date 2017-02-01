@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
     public function actionIndex() {
 
-        $categories = Category::find()->where(['<>', 'id', 1])->orderBy(['self_rank' => SORT_ASC])->all();
+        $categories = Category::find()->orderBy(['self_rank' => SORT_ASC])->all();
         $model = Page::findOne(['page_id'=>'categories']);
         return $this->render('index', [
             'model' => $model,
@@ -37,13 +37,20 @@ class CategoryController extends Controller
         $category = $this->findModelBySlug($slug);
         $parentPage = Page::findOne(['page_id'=>'categories']);
 
-        $cateComps = $category->getCateCompsSortByRank();
+        $queryParams = Yii::$app->request->queryParams;
+        $filterSelected = isset($queryParams['filter']) ? $queryParams['filter'] : '';
 
+        if ($filterSelected) {
+            $cateComps = $category->getCateCompsSortByRank(['=', 'regulation_id', $filterSelected]);
+        } else {
+            $cateComps = $category->getCateCompsNoFilterSorByRank();
+        }
 
         return $this->render('view', [
             'category' => $category,
             'cateComps' => $cateComps,
             'parentPage' => $parentPage,
+            'filterSelected' => $filterSelected
         ]);
     }
 
