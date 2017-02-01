@@ -62,7 +62,7 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 440, "height"
 
 <li><span class="greenspan">Max Leverage:</span> <?= $model->max_leverage ?></li>
 
-<li><span class="greenspan">Spreads From (EUR/USD):</span><?= $model->spreads_from ?> pips</li>
+<li><span class="greenspan">Spreads From (EUR/USD):</span><?= $model->spreads_from ?></li>
 
 <li><span class="greenspan">Pairs Offered:</span> <?= $model->pairs_offered ?></li>
 

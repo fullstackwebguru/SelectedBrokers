@@ -37,7 +37,7 @@ class m161108_142834_create_company_table extends Migration
             'regulation' => $this->string(255),
             'max_leverage' => $this->string(255),
             'min_deposit' => $this->integer(255),
-            'spreads_from' => $this->double(2)->notNull(),
+            'spreads_from' => $this->string(255),
             'pairs_offered' => $this->string(255),
             'us_allowed' => $this->integer(2),
             'self_rank' => $this->integer(11),
