@@ -78,10 +78,10 @@ class Rating extends \yii\base\Widget
         $halfFlag = false;
 
         $offset = $currRating - $value * $interval;
-        if ($offset <= $interval/2 && $offset > 0) {
-            $halfFlag = true;
-        } else if ($offset > 0) {
+        if ($offset >= $interval*3/4) {
             $value = $value + 1;
+        } else if ($offset >= $interval/4) {
+            $halfFlag = true;
         }
 
         $html = '';
