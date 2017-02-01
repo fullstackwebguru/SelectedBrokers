@@ -830,7 +830,6 @@ footer {
     width: 50%;
 }
 
-
 .read-more {
     cursor: pointer;
     color: #949494;
@@ -846,6 +845,10 @@ footer {
 .post .panel 
 { min-height: 400px; }
 
+
+#company-review-carousel .button-block { 
+    width: 100%; 
+}
 
 /* Responsive Styles */
 
