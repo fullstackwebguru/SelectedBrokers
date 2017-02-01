@@ -155,6 +155,16 @@ $attributes = [
     ],
     [
         'group'=>true,
+        'label'=>'Table Information',
+        'rowOptions'=>['class'=>'info']
+    ],
+    [
+        'attribute'=>'slider_text', 
+        'value'=>$model->slider_text,
+        'type'=>DetailView::INPUT_TEXTAREA
+    ],
+    [
+        'group'=>true,
         'label'=>'SEO Information',
         'rowOptions'=>['class'=>'info']
     ],

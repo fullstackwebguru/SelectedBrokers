@@ -88,7 +88,7 @@ class Company extends ActiveRecord
             [['min_deposit'], 'number'],
             [['bonus_as_value','established', 'spreads_from','us_allowed'], 'integer'],
             [['title', 'slug','short_description'], 'string'],
-            [['button_text', 'link_text', 'promotion_link_text','bonus_link_heading'], 'string'],
+            [['button_text', 'link_text', 'promotion_link_text','bonus_link_heading','slider_text'], 'string'],
             [['temp_image','temp_image_logo'], 'safe'],
             [['temp_image','temp_image_logo'], 'file', 'extensions'=>'jpg, gif, png'],
         ];

@@ -40,8 +40,7 @@ $backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_u
             </div>
                </div>
         </div>
-    
-    
+  
     
        <div class="row">
             <div class="container" id="toplist-table">
@@ -90,6 +89,12 @@ $backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_u
            </div>
         </div> 
 
+<div style="margin:30px 0"></div>
+
+<?= $this->render('../include/_reviewslider', [
+    'category' => $category,
+    'cateComps' => $cateComps
+]) ?>
 
 <?php
 
