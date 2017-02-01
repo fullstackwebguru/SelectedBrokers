@@ -846,6 +846,9 @@ footer {
     margin-top: 10px;
 }
 
+.post .panel 
+{ min-height: 400px; }
+
 
 /* Responsive Styles */
 
