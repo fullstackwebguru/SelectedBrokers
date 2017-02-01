@@ -59,7 +59,7 @@ $backgroundImage = $category->banner_background == 'default' ? '' : cloudinary_u
                 ?>
 
                  <div class="table-filters">
-                    <span class="filter-info"><i class="fa fa-filter" aria-hidden="true"></i>Filter by regulations</span>
+                    <span class="filter-info"><i class="fa fa-filter" aria-hidden="true"></i>Filter by Regulation</span>
                     <select id="reg-filter" class="selectpicker">
                       <option value="0" <?= !$filterSelected ? 'selected' : '' ?> >None</option>
                       <?php foreach($category->regulCates as $regulCate) { ?>
