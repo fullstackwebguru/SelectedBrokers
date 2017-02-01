@@ -23,7 +23,7 @@ $this->registerMetaTag([
             'content' => $model->meta_description
         ]);
 
-$companyLogo = cloudinary_url($model->logo_url, array("width" => 135, "height" => 85, "crop" => "fill"));
+$companyLogo = cloudinary_url($model->logo_url);
 $companyImage = cloudinary_url($model->image_url, array("width" => 440, "height" => 329, "crop" => "fill"));
 
 ?>

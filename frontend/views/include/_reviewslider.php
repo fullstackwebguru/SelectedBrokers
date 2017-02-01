@@ -25,7 +25,7 @@ use yii\helpers\Url;
                   }
 
                   $compIndex++;
-                  $companyImage = cloudinary_url($company->logo_url, array("width" => 135, "height" => 85, "crop" => "fill"));
+                  $companyImage = cloudinary_url($company->logo_url);
             ?>
 
             <div class="item <?= $compIndex == 1 ? 'active' : '' ?>">
