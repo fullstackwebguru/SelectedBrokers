@@ -24,18 +24,18 @@ $this->registerMetaTag([
 ?>
 
 <div class="container">
-    <div class="row" id="lazy-news-container"> 
+    <div class="row" > 
 
-        <div class="col-lg-12">
+        <div class="col-lg-12" >
            <h2>All Articles</h2>
+
+           <div class="row" id="lazy-news-container"> 
+                <?=  $this->render('_newsList', [
+                    'guides' => $guides,
+                    'more' => $more,
+                    'startPos' => $startPos
+                ]); ?>
+            </div>
         </div>
-        
-
-        <?=  $this->render('_newsList', [
-            'guides' => $guides,
-            'more' => $more,
-            'startPos' => $startPos
-        ]); ?>
-
     </div>
 </div>

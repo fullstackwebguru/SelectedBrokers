@@ -23,16 +23,19 @@ $this->registerMetaTag([
 ?>
 
 <div class="container">
-    <div class="row" id="lazy-reviews-container"> 
+    <div class="row"> 
         <div class="col-lg-12">
             <h2>All Reviews</h2>
-        </div>
 
-        <?=  $this->render('_companyList', [
-            'companies' => $companies,
-            'more' => $more,
-            'startPos' => $startPos
-        ]); ?>
+            <div class="row" id="lazy-reviews-container"> 
+                <?=  $this->render('_companyList', [
+                    'companies' => $companies,
+                    'more' => $more,
+                    'startPos' => $startPos
+                ]); ?>
+
+            </div>
+        </div>
 
     </div>
 </div>
