@@ -25,7 +25,7 @@ use yii\helpers\Html;
                         <?=  Html::a('Terms of Use',['/site/tos']) ?>
                     </li>
                     <li>
-                        <?=  Html::a('disclaimer',['/site/disclaimer']) ?>
+                        <?=  Html::a('Disclaimer',['/site/disclaimer']) ?>
                     </li>
                     <li>
                         <?=  Html::a('Contact',['/site/contact']) ?>
