@@ -99,13 +99,13 @@ CREATE TABLE `cate_comp` (
   PRIMARY KEY (`id`),
   KEY `fk-catecomp-category_id-category-id` (`category_id`),
   KEY `fk-catecomp-company_id-company-id` (`company_id`),
-  CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `fk-catecomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-catecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `cate_comp` */
 
-insert  into `cate_comp`(`id`,`category_id`,`rank`,`company_id`,`created_at`,`updated_at`) values (1,1,1,1,1485713469,1485716116),(2,1,0,2,1485716113,1485716116);
+insert  into `cate_comp`(`id`,`category_id`,`rank`,`company_id`,`created_at`,`updated_at`) values (1,1,1,1,1485713469,1485716116),(2,1,0,2,1485716113,1485716116),(3,2,0,3,1485936008,1485936008),(4,2,1,4,1485937100,1485937100);
 
 /*Table structure for table `category` */
 
@@ -133,12 +133,17 @@ CREATE TABLE `category` (
   `meta_keywords` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `show_deposit` int(2) DEFAULT '1',
+  `show_regulation` int(2) DEFAULT '1',
+  `banner_heading` text COLLATE utf8_unicode_ci,
+  `banner_subheading` text COLLATE utf8_unicode_ci,
+  `banner_background` varchar(300) COLLATE utf8_unicode_ci DEFAULT 'default',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`title`,`short_title`,`short_description`,`description`,`image_url`,`self_rank`,`status`,`slider_title`,`slider_description`,`table_title`,`table_risk`,`table_risk_short`,`table_advisor_disclosure`,`how_to_choose_title`,`how_to_choose`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'Forex  Trading','Forex','wefwewefewf',NULL,'k6ero4ico61amnwfmgoh',1,1,'Forex Trading #name#','Default trader','Forex Trading #name#','* Individual Brokers T&Cs Apply Risk Warning: Trading Forex (FX), Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit. Please be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk. Advertiser Disclosure: TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','Trading Forex, Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit.\r\nPlease be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk.','TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','fwefwef #name#','Because there’s so much competition in the Forex (FX) market as well as having countless brokers to choose from, it can be difficult to know which online FX Broker will be best for you. Beginners have different needs than more advanced traders, so these are a few key points we suggest keeping in mind when making your decision:\r\n\r\n**Regulation:**  \r\nEach country has its own regulatory body such as the Financial Conduct Authority (FCA), here in the UK. The regulatory body develops rules, services and programs to protect the integrity of the market, traders, and investors as well as the brokers themselves, and to help members meet regulatory responsibilities. Due to potential safety concerns regarding deposit, accounts should exclusively be opened with firms that are regulated.\r\n\r\n**Customer Service:**  \r\nOnline FX Trading takes place 24 hrs a day, so customer support should be available at all times. Ideally, you will want to speak with a live support person rather than a time-consuming auto-attendant. Perhaps give a quick call to the customer service center so you can get an idea of the type of customer service provided. Check on wait times and find out the representative’s ability to answer questions regarding spreads and leverage, their trade volume, as well as company details.\r\n\r\nAccount Types:\r\n\r\nYour ideal FX broker should be able to offer either multiple account options or an element of customizability. Look for an online Forex Broker that offers competitive spreads and easy deposits/withdrawals. Find out if there are account options specifically for beginners and if so what that account offers to benefit new traders.\r\n\r\n**Currency Pairs:**  \r\nAn online Forex Broker can provide a huge selection of forex pairs. However, it is most important is that they provide the variety of pairs that interest you. While there are many currencies available for trading, there are only a few get the majority of the attention, and as the result, trade with the highest liquidity.\r\n\r\n**Tradeable Assets:**  \r\nWhile selecting the best FX Trading Broker for you, it’s possible just to concentrate on Forex trading. However, you should keep in mind there are many types of investment alternatives offered as well, such as Bitcoin, Stocks, CFDs, ETFs, or trading in options or futures.\r\n\r\n','forex-trading','afeafaef','aefaefaefaf',1485712185,1485713965);
+insert  into `category`(`id`,`title`,`short_title`,`short_description`,`description`,`image_url`,`self_rank`,`status`,`slider_title`,`slider_description`,`table_title`,`table_risk`,`table_risk_short`,`table_advisor_disclosure`,`how_to_choose_title`,`how_to_choose`,`slug`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`show_deposit`,`show_regulation`,`banner_heading`,`banner_subheading`,`banner_background`) values (1,'Forex  Trading','Forex','wefwewefewf',NULL,'k6ero4ico61amnwfmgoh',1,1,'Forex Trading #name#','Default trader','Forex Trading #name#','* Individual Brokers T&Cs Apply Risk Warning: Trading Forex (FX), Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit. Please be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk. Advertiser Disclosure: TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','Trading Forex, Commodities, Options, and CFDs are a high-risk activity and you may lose more than your initial deposit.\r\nPlease be sure you thoroughly understand the risks involved and do not invest money you cannot afford to lose. Your capital is at risk.','TopBrokers.Trade is an independent specialized comparison site funded from the referral fees from the sites that it promotes. TopBrokers.Trade receives compensation from the brokers sites and advertisements it features. Thanks to this compensation, we can provide you a free comparison tool. TopBrokers.Trade is not able to display and feature information about all the available broker sites or broker site offers.','fwefwef #name#','Because there’s so much competition in the Forex (FX) market as well as having countless brokers to choose from, it can be difficult to know which online FX Broker will be best for you. Beginners have different needs than more advanced traders, so these are a few key points we suggest keeping in mind when making your decision:\r\n\r\n**Regulation:**  \r\nEach country has its own regulatory body such as the Financial Conduct Authority (FCA), here in the UK. The regulatory body develops rules, services and programs to protect the integrity of the market, traders, and investors as well as the brokers themselves, and to help members meet regulatory responsibilities. Due to potential safety concerns regarding deposit, accounts should exclusively be opened with firms that are regulated.\r\n\r\n**Customer Service:**  \r\nOnline FX Trading takes place 24 hrs a day, so customer support should be available at all times. Ideally, you will want to speak with a live support person rather than a time-consuming auto-attendant. Perhaps give a quick call to the customer service center so you can get an idea of the type of customer service provided. Check on wait times and find out the representative’s ability to answer questions regarding spreads and leverage, their trade volume, as well as company details.\r\n\r\nAccount Types:\r\n\r\nYour ideal FX broker should be able to offer either multiple account options or an element of customizability. Look for an online Forex Broker that offers competitive spreads and easy deposits/withdrawals. Find out if there are account options specifically for beginners and if so what that account offers to benefit new traders.\r\n\r\n**Currency Pairs:**  \r\nAn online Forex Broker can provide a huge selection of forex pairs. However, it is most important is that they provide the variety of pairs that interest you. While there are many currencies available for trading, there are only a few get the majority of the attention, and as the result, trade with the highest liquidity.\r\n\r\n**Tradeable Assets:**  \r\nWhile selecting the best FX Trading Broker for you, it’s possible just to concentrate on Forex trading. However, you should keep in mind there are many types of investment alternatives offered as well, such as Bitcoin, Stocks, CFDs, ETFs, or trading in options or futures.\r\n\r\n','forex-trading','afeafaef','aefaefaefaf',1485712185,1485930442,0,1,'afeaefafeawf','wefawfawefaewfefa','fzv6b3qfbgd0vmd6hwcg'),(2,'Stocks','Stocks','Stocks',NULL,'gur8xvveuwabhymidrjv',2,1,'Top 10 Brokers for #name#','awefawefawefaewf','Top 10 Brokers for #name#','efaefaef','afeafa','awefawefawf','How to Choose the Best Online Broker for #name#','aefaewfawefawefawefawefawef','stocks','wefwef','wefwefwef',1485935983,1485936000,1,1,'wefwef','wefwefwefwefwef','default');
 
 /*Table structure for table `company` */
 
@@ -155,6 +160,7 @@ CREATE TABLE `company` (
   `website_url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `rating` double NOT NULL,
   `review` text COLLATE utf8_unicode_ci,
+  `bonus_offer_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bonus_as_value` int(255) NOT NULL DEFAULT '0',
   `bonus_offer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `telephone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -176,12 +182,13 @@ CREATE TABLE `company` (
   `link_text` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Get Bonus',
   `promotion_link_text` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'Get Deal',
   `bonus_link_heading` varchar(255) COLLATE utf8_unicode_ci DEFAULT '#bonus# Welcome Bonus',
+  `slider_text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `company` */
 
-insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_as_value`,`bonus_offer`,`telephone`,`established`,`regulation`,`min_deposit`,`max_leverage`,`spreads_from`,`pairs_offered`,`us_allowed`,`self_rank`,`slug`,`status`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`button_text`,`link_text`,`promotion_link_text`,`bonus_link_heading`) values (1,0,'Company','afeaf','weffafeawfawfe','fnomzyk2gz3ufeqpnypp','ybzaikr8rofdnvt6j3es','https://google.com',5,'wefwefwefwef',14,'afeafaewf','1234234',220,'wefewf',3,'1:220',134,'324324 ave',1,1,'company',1,'fwef','wefwefewf',1485713446,1485719332,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus'),(2,0,'Company2','afaewfawef','awfeaewfawef','ozmvne938x0ntquw9vy2','d0ihsshoxrglc0fhiiyp','https://google.com',8,'afeaefawfaewf',14,'afeawef','234324',NULL,'234234324',3,NULL,12343,'1423',1,2,'company2',1,'afeaefa','afeafaewf',1485716091,1485716091,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus');
+insert  into `company`(`id`,`category_id`,`title`,`short_description`,`description`,`logo_url`,`image_url`,`website_url`,`rating`,`review`,`bonus_offer_desc`,`bonus_as_value`,`bonus_offer`,`telephone`,`established`,`regulation`,`min_deposit`,`max_leverage`,`spreads_from`,`pairs_offered`,`us_allowed`,`self_rank`,`slug`,`status`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`,`button_text`,`link_text`,`promotion_link_text`,`bonus_link_heading`,`slider_text`) values (1,0,'Company','afeaf','weffafeawfawfe','fnomzyk2gz3ufeqpnypp','ybzaikr8rofdnvt6j3es','https://google.com',5,'wefwefwefwef','tefe',14,'afeafaewf','1234234',220,'wefewf',3,'1:220',134,'324324 ave',1,1,'company',1,'fwef','wefwefewf',1485713446,1485918372,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus',NULL),(2,0,'Company2','afaewfawef','awfeaewfawef','ozmvne938x0ntquw9vy2','d0ihsshoxrglc0fhiiyp','https://google.com',8,'afeaefawfaewf',NULL,14,'afeawef','234324',NULL,'234234324',3,NULL,12343,'1423',1,2,'company2',1,'afeaefa','afeafaewf',1485716091,1485716091,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus',NULL),(3,0,'Hostile','afeawfawe','fawefawef','lmdfv3pj4e2y5axtgkjm','rrb0otjzmypv9cbgohg9','afeawfew',4,'afeafaewf','',145,'awefawef','efawefawef',4,'afewaewfawef',14,'afeaefaewf',4,'afeawfaewf',1,3,'hostile',1,'awefawefawefawf','awefawefwaefawefawe',1485935938,1485937019,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus','haha'),(4,0,'Company3','afeaf','aefaewf','m1opilhjyjbdbovq7dqj','rfgmjaclhrkhkhcpvat8','https://google.com',5,'afawefawefawf','',14,'qfeqfe','1234234',220,'13423432',14,'afeaefaewf',1,'324324',1,4,'company3',1,'afeafawef','awefawefawef',1485937066,1485937085,'Visit Site','Get Bonus','Get Deal','#bonus# Welcome Bonus','Hellow qote');
 
 /*Table structure for table `feature_company` */
 
@@ -196,7 +203,7 @@ CREATE TABLE `feature_company` (
   PRIMARY KEY (`id`),
   KEY `fk-featurecomp-company_id-company-id` (`company_id`),
   CONSTRAINT `fk-featurecomp-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `feature_company` */
 
@@ -237,7 +244,7 @@ CREATE TABLE `migration` (
 
 /*Data for the table `migration` */
 
-insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1485712138),('m161109_180719_create_category_table',1485712138),('m161109_190347_create_cate_comp_table',1485712138),('m161110_170051_create_guide_table',1485531271),('m161110_172805_create_page_table',1485531051),('m161120_210544_create_feature_company_table',1485712138);
+insert  into `migration`(`version`,`apply_time`) values ('m000000_000000_base',1478614396),('m130524_201442_init',1478614399),('m140506_102106_rbac_init',1478614435),('m161108_142834_create_company_table',1485712138),('m161109_180719_create_category_table',1485712138),('m161109_190347_create_cate_comp_table',1485712138),('m161110_170051_create_guide_table',1485531271),('m161110_172805_create_page_table',1485531051),('m161120_210104_create_regulation_table',1485917531),('m161120_210544_create_feature_company_table',1485712138),('m161120_210544_create_regulation_broker_table',1485917531),('m161120_210706_create_regulation_category_table',1485917531),('m161120_215912_create_relationship_regul_cate_comp',1485917531);
 
 /*Table structure for table `page` */
 
@@ -259,6 +266,66 @@ CREATE TABLE `page` (
 /*Data for the table `page` */
 
 insert  into `page`(`id`,`page_id`,`title`,`slug`,`description`,`meta_description`,`meta_keywords`,`created_at`,`updated_at`) values (1,'home','home','home','home','home','home',1234234324,1234234324),(2,'categories','categories','categories','categories','categories','categories',134234324,1423423432),(3,'reviews','reviews','reviews','afeafe','reviews','reviews',2147483647,2147483647),(4,'news','news','news','3f2f2f3f','news','news',23432432,2147483647),(5,'about','about','about','about','about','about',324324324,2147483647),(6,'privacy','privacy','privacy','privacy','privacy','privacy',2147483647,2147483647),(7,'tos','Tos','Tos','Tos','Tos','Tos',324234234,234324234),(8,'disclaimer','disclaimer','disclaimer','disclaimer','disclaimer','disclaimer',324324234,234324234),(9,'contact','contact','contact','contact','contact','contact',234234324,2147483647);
+
+/*Table structure for table `regulation` */
+
+DROP TABLE IF EXISTS `regulation`;
+
+CREATE TABLE `regulation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `regulation` */
+
+insert  into `regulation`(`id`,`title`,`created_at`,`updated_at`) values (1,'CYSEC',1485917557,1485917557),(3,'FSB',1485920249,1485920249);
+
+/*Table structure for table `regulation_broker` */
+
+DROP TABLE IF EXISTS `regulation_broker`;
+
+CREATE TABLE `regulation_broker` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `regulation_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-regulcate-company_id-company-id` (`company_id`),
+  KEY `fk-regulcomp-regulation_id-regulation-id` (`regulation_id`),
+  CONSTRAINT `fk-regulcomp-regulation_id-regulation-id` FOREIGN KEY (`regulation_id`) REFERENCES `regulation` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-regulcate-company_id-company-id` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `regulation_broker` */
+
+insert  into `regulation_broker`(`id`,`regulation_id`,`company_id`,`value`,`created_at`,`updated_at`) values (3,1,1,'awfef',1485920190,1485920190),(5,3,1,'efefe',1485930726,1485930726),(6,3,2,'wfewf',1485935130,1485935130);
+
+/*Table structure for table `regulation_category` */
+
+DROP TABLE IF EXISTS `regulation_category`;
+
+CREATE TABLE `regulation_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `regulation_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk-regulcomp-category_id-category-id` (`category_id`),
+  KEY `fk-regulcate-regulation_id-regulation-id` (`regulation_id`),
+  CONSTRAINT `fk-regulcate-regulation_id-regulation-id` FOREIGN KEY (`regulation_id`) REFERENCES `regulation` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk-regulcomp-category_id-category-id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `regulation_category` */
+
+insert  into `regulation_category`(`id`,`regulation_id`,`category_id`,`position`,`created_at`,`updated_at`) values (2,3,1,0,1485921000,1485921000),(3,1,1,0,1485931816,1485931816);
 
 /*Table structure for table `user` */
 
