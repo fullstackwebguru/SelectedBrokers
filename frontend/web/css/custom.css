@@ -215,10 +215,7 @@ header.carousel .fill {
 #toplist-table a:hover {
     text-decoration: none;
 }
-.logo-td img {
-    width: 70%;
-    height: auto;
-}
+
 .logo-td {
     padding-left: 0 !important;
     padding-right: 0 !important;
