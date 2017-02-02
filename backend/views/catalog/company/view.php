@@ -94,9 +94,9 @@ $attributes = [
         'value'=>$model->pairs_offered
     ],
     [
-        'attribute'=>'us_allowed', 
+        'attribute'=>'status', 
         'format'=>'raw',
-        'value'=>$model->us_allowed ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'value'=>$model->status ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
         'type'=>DetailView::INPUT_SWITCH,
         'widgetOptions' => [
             'pluginOptions' => [
@@ -106,9 +106,9 @@ $attributes = [
         ],
     ],
     [
-        'attribute'=>'status', 
+        'attribute'=>'us_allowed', 
         'format'=>'raw',
-        'value'=>$model->status ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'value'=>$model->us_allowed ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
         'type'=>DetailView::INPUT_SWITCH,
         'widgetOptions' => [
             'pluginOptions' => [

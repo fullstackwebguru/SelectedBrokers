@@ -846,13 +846,14 @@ footer {
 { min-height: 400px; }
 
 
-#company-review-carousel .button-block { 
-    width: 100%; 
-}
-
 /* Responsive Styles */
 
 @media(max-width:991px) {
+    
+    #company-review-carousel .button-block { 
+        width: 100%; 
+    }
+
     .mreset {
         float: none;
         width: 100%;
