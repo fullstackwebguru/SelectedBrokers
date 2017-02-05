@@ -22,11 +22,12 @@ $this->registerMetaTag([
             'name'=>'description',
             'content' => $model->meta_description
         ]);
+
 ?>
 
-
-
+<?php if ( isset(Yii::$app->params['devicedetect']) && !Yii::$app->params['devicedetect']['isMobile'] && !Yii::$app->params['devicedetect']['isTablet']) { ?> 
 <?= StockWidget::widget() ?>
+<?php } ?>
 
 <!-- Page Content -->
    

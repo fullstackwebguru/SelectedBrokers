@@ -32,7 +32,8 @@
         "kartik-v/yii2-markdown": "dev-master",
         "driftyco/ionicons": "*",
         "cloudinary/cloudinary_php": "dev-master",
-        "scheb/yahoo-finance-api": "^1.2"
+        "scheb/yahoo-finance-api": "^1.2",
+        "alexandernst/yii2-device-detect": "0.0.11"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

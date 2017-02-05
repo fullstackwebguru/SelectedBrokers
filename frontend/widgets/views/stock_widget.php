@@ -16,8 +16,13 @@ use frontend\assets\AppAsset;
             <div class="finance-widget">
                 <div class="panel panel-default">
                     <ul>
-                        <?php foreach($stocks as $key => $stock) { ?>
-                        <li>
+                        <?php 
+                        $i = 0;
+                        $len = count($stocks);
+                        foreach($stocks as $key => $stock) {
+                             $i++;
+                         ?>
+                        <li class="<?=  $i == $len ? 'last' : '' ?>">
                             <div class="finance-widget-info">
                                 <span class="index-name"><?= $stock['name'] ?></span>
                                 <span class="index-ammount"><?= $stock['open'] ?></span>

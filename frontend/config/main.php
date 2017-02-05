@@ -10,9 +10,12 @@ return [
     'id' => 'app-frontend',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','devicedetect'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'devicedetect' => [
+            'class' => 'alexandernst\devicedetect\DeviceDetect'
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => ''
