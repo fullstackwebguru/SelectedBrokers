@@ -41,9 +41,12 @@ use frontend\assets\AppAsset;
 
                                 $js = implode(",", $stock['history']);
                                 $js = "[" . $js . "]";
+
+                                $color = $stock['trend'] ? "#008000" : "#ff0000";
                             
                                 $html = '
                                     Highcharts.chart("chart_container_'. $key . '", {
+                                        colors: ["'. $color . '"],
                                         title:{
                                             text:""
                                         },
