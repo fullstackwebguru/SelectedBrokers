@@ -5,6 +5,7 @@
 use frontend\widgets\SideNews;
 use frontend\widgets\SideCategory;
 use frontend\widgets\SideCompany;
+use frontend\widgets\StockWidget;
 
 use yii\helpers\Url;
 use kartik\markdown\Markdown;
@@ -22,6 +23,10 @@ $this->registerMetaTag([
             'content' => $model->meta_description
         ]);
 ?>
+
+
+
+<?= StockWidget::widget() ?>
 
 <!-- Page Content -->
    

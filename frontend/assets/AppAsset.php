@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
         'js/jquery.js',
         'js/bootstrap.js',
         'js/bootstrap-sortable.js',
+        'js/highcharts.js',
         'js/review.js'
     ];
     public $depends = [

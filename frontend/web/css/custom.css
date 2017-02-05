@@ -475,6 +475,7 @@ footer {
 }
 .finance-widget-info {
     float: left;
+    width: 100%
 }
 .finance-widget ul {
     list-style-type: none;
