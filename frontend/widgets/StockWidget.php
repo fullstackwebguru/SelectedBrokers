@@ -19,7 +19,7 @@ class StockWidget extends \yii\base\Widget
 
         $this->stocks = [];
         //Fetch full data set
-        $data = $client->getQuotes(array("^GSPC", "GOOGL", "3086.HK", "XCT9.L")); //Multiple stocks at once
+        $data = $client->getQuotes(array("^GSPC", "GOOGL", "3086.HK", "AAPL")); //Multiple stocks at once
 
         if (isset($data['query']) && $data['query']['count'] > 0) {
             $quotes = $data['query']['results']['quote'];
