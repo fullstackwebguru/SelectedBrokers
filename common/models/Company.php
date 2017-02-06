@@ -86,7 +86,7 @@ class Company extends ActiveRecord
             [['rating'], 'number', 'max' => 10],
             [['min_deposit'], 'number'],
             [['bonus_as_value','established','us_allowed'], 'integer'],
-            [['user_favorite'], 'integer'],
+            [['user_favorite','extra_secure'], 'integer'],
             [['title', 'slug','short_description'], 'string'],
             [['button_text', 'link_text', 'promotion_link_text','bonus_link_heading','slider_text'], 'string'],
             [['temp_image','temp_image_logo'], 'safe'],

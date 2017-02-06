@@ -43,6 +43,11 @@ use yii\helpers\Url;
                                       <td class="rank-td" data-value="<?= $catComp->rank+1 ?>"><?= $catComp->rank+1 ?></td>
                                       <td class="logo-td" >
                                           <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;">
+                                              <?php  if ($company->extra_secure) { ?>
+                                                <img class="secure-image" src="/img/securebadge2.png">
+                                              <?php } else if ($company->user_favorite) { ?> 
+                                                <img class="secure-image" src="/img/securebadge.png">
+                                              <?php } ?>
                                               <img src="<?= $companyImage ?>" alt="<?= $company->title ?>"></a>
                                           </a>
                                         </td>

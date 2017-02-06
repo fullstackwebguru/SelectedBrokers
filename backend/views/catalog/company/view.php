@@ -94,7 +94,21 @@ $attributes = [
         'value'=>$model->pairs_offered
     ],
     [
+        'attribute'=>'extra_secure', 
+        'label' => 'Extra Secure Black',
+        'format'=>'raw',
+        'value'=>$model->extra_secure ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'attribute'=>'user_favorite', 
+        'label' => 'Extra Secure Blue',
         'format'=>'raw',
         'value'=>$model->user_favorite ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
         'type'=>DetailView::INPUT_SWITCH,
