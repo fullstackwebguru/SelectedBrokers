@@ -5,6 +5,8 @@ namespace frontend\widgets;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use Scheb\YahooFinanceApi\Exception\ApiException;
+
 
 class StockWidget extends \yii\base\Widget
 {
@@ -19,7 +21,11 @@ class StockWidget extends \yii\base\Widget
 
         $this->stocks = [];
         //Fetch full data set
-        $data = $client->getQuotes(array("^GSPC", "3086.HK", "AAPL", "GOOGL", "XCT9.L")); //Multiple stocks at once
+        try {
+            $data = $client->getQuotes(array("^GSPC", "3086.HK", "AAPL", "GOOGL", "XCT9.L")); //Multiple stocks at once
+        } catch (ApiException $e) {
+            $data = [];
+        }
 
         if (isset($data['query']) && $data['query']['count'] > 0) {
             $quotes = $data['query']['results']['quote'];
@@ -32,7 +38,12 @@ class StockWidget extends \yii\base\Widget
 
                 $currHistory = [];
                 
-                $stockHistory = $client->getHistoricalData($value['symbol'], new \DateTime('-5 week') , new \DateTime("now"));
+                try {
+                    $stockHistory = $client->getHistoricalData($value['symbol'], new \DateTime('-5 week') , new \DateTime("now"));
+                } catch (ApiException $e) {
+                    $stockHistory = [];
+                }
+                
 
                 if (isset($stockHistory['query']) && $stockHistory['query']['count'] > 0) {
                     $historyValues = $stockHistory['query']['results']['quote'];
@@ -72,9 +83,14 @@ class StockWidget extends \yii\base\Widget
             }
         }
 
-        $exchange = $client->getQuotes(array("EURUSD=X", "GBPUSD=X"));
 
-        if (isset($exchange['query']) && $data['query']['count'] > 0) {
+        try {
+            $exchange = $client->getQuotes(array("EURUSD=X", "GBPUSD=X"));
+        } catch (ApiException $e) {
+            $exchange = [];
+        }
+
+        if (isset($exchange['query']) && $exchange['query']['count'] > 0) {
             $quotes = $exchange['query']['results']['quote'];
             foreach ($quotes as $key => $value) {
 
@@ -85,7 +101,7 @@ class StockWidget extends \yii\base\Widget
 
                 $currHistory = [];
 
-                $compareSymbol = "";
+                $compareSymbol = "EUR=X";
                 switch ($value['symbol']) {
                     case 'EURUSD=X':
                         $compareSymbol = 'EUR=X';
@@ -97,7 +113,12 @@ class StockWidget extends \yii\base\Widget
                         break;
                 }
 
-                $stockHistory = $client->getHistoricalData($compareSymbol, new \DateTime('-5 week') , new \DateTime("now"));
+                try {
+                    $stockHistory = $client->getHistoricalData($compareSymbol, new \DateTime('-5 week') , new \DateTime("now"));
+                } catch (ApiException $e) {
+                    $stockHistory = [];
+                }
+                
 
                 if (isset($stockHistory['query']) && $stockHistory['query']['count'] > 0) {
                     $historyValues = $stockHistory['query']['results']['quote'];

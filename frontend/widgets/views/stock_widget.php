@@ -10,6 +10,13 @@ use frontend\assets\AppAsset;
 ?>
 
 <!-- Finance widget -->
+
+<?php 
+
+$len = count($stocks);
+
+if ($len > 0) {
+?>
 <div class="container" id="fw-fix">
    <div class="row">
         <div class="col-lg-12">
@@ -18,7 +25,6 @@ use frontend\assets\AppAsset;
                     <ul>
                         <?php 
                         $i = 0;
-                        $len = count($stocks);
                         foreach($stocks as $key => $stock) {
                              $i++;
                          ?>
@@ -111,3 +117,7 @@ use frontend\assets\AppAsset;
         </div>
    </div>
 </div>
+
+<?php
+}
+?>
