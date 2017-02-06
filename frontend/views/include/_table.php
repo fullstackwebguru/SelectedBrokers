@@ -82,7 +82,7 @@ use yii\helpers\Url;
                                         </td>
                                       <td class="risk-td" data-value="0">
                                           <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="button custom-btn" target="_blank" title="Visit Site"><?= $company->button_text ?> <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                                          <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-bonus" target="_blank" title="Get Bonus"><?= $company->link_text ?></a></td>
+                                          <strong><a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-bonus" target="_blank" title="Get Bonus"><?= $company->link_text ?></a></strong></td>
                                     </tr>
 
                               <?php  }  ?>

@@ -14,7 +14,8 @@ use yii\helpers\Url;
             <li>
                 <a href="<?=Url::toRoute($guide->getRoute())?>" title="">
                     <img src="<?= $guideImage ?>" alt="" />
-                    <p><?= $guide->title ?></p>
+                    <h4 class="small-title"><?= $guide->title ?></h4>
+                    <p><?= $guide->shortDescription() ?></p>
                 </a>
             </li>
             <?php } ?>

@@ -111,4 +111,15 @@ class Guide extends ActiveRecord
     {
         return ['news/slug', 'slug' => $this->slug];
     }
+
+    public function shortDescription() {
+        $len = strlen($this->description);
+        $str = $this->description;
+        if ($len > 50) {
+            $str = substr($str, 0, 49);
+            $str = $str . "...";
+        }
+
+        return $str;
+    }
 }

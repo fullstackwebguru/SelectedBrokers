@@ -56,6 +56,8 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 440, "height"
                                       <li><span class="greenspan">Telephone:</span> <?= $model->telephone ?></li>
                    <li><span class="greenspan">Established:</span> <?= $model->established ?></li>
                    <li><span class="greenspan">Regulation:</span> <?= $model->regulation ?></li>
+
+                   <li><span class="greenspan">U.S. Clients Allowed:</span> <?= $model->us_allowed ? 'YES' : 'NO' ?></li>
                </ul>
                <ul class="info-list">
                 <li><span class="greenspan">Min Initial Deposit:</span> £<?= $model->min_deposit ?></li>
@@ -65,8 +67,6 @@ $companyImage = cloudinary_url($model->image_url, array("width" => 440, "height"
 <li><span class="greenspan">Spreads From (EUR/USD):</span><?= $model->spreads_from ?></li>
 
 <li><span class="greenspan">Pairs Offered:</span> <?= $model->pairs_offered ?></li>
-
-<li><span class="greenspan">U.S. Clients Allowed:</span> <?= $model->us_allowed ? 'YES' : 'NO' ?></li>
                  
                </ul>
 

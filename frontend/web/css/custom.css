@@ -60,6 +60,13 @@ footer {
     background-color: none !important;
 }
 /* Home Page */
+
+
+h4.small-title {
+margin-top: 0;
+}
+
+
 .top-news {
     position: relative;
     margin-bottom: 20px;
@@ -400,6 +407,7 @@ header.carousel .fill {
 .bottom-info h2 {
     margin: 0 15px 0 0 !important;
 }
+
 
 /* Footer */
 
@@ -846,6 +854,19 @@ footer {
 .post .panel 
 { min-height: 400px; }
 
+td {
+position: relative;
+}
+
+.secure-image {
+position: absolute;
+left: -67px;
+top: 5px;
+display: block;
+z-index: 7;
+}
+
+
 
 /* Responsive Styles */
 
@@ -881,6 +902,11 @@ footer {
         height: 70%;
     }
 
+    .secure-image {
+        left: -64px;
+        top: 15px;
+        }
+    }
 }
 @media(max-width:640px) {
     .page-header {
@@ -916,8 +942,26 @@ footer {
     .mindep-th, .mindep-td, .features-th, .features-td, .rating-th, .rating-td {
         display: none;
     }
+
+    .secure-image {
+        left: -64px;
+        top: 15px;
+    }
 }
+
+@media(max-width:321px) {
+    .secure-image {
+        left: -41px;
+    }
+}
+
 @media(max-width:480px) {
+    .secure-image {
+        left: -46px;
+        top: 3px;
+        max-width: 140px;
+    }
+
     .navbar-brand {
         width: 70%;
     }
@@ -926,8 +970,7 @@ footer {
         float: none;
 }
     .logo-td img {
-        width: 70%;
-        height: auto;
+        max-width: 130px;
     }
     .rank-td, .logo-td {
         padding: 0 !important;

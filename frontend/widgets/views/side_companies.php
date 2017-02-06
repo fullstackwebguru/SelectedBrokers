@@ -14,7 +14,8 @@ use yii\helpers\Url;
             <li>
                 <a href="<?=Url::toRoute($company->getRoute())?>" title="">
                     <img src="<?= $companyImage ?>" alt="" />
-                    <p><?= $company->title ?></p>
+                    <h4 class="small-title"><?= $company->title ?></h4>
+                    <p><?= $company->short_description ?></p>
                 </a>
             </li>
             <?php } ?>

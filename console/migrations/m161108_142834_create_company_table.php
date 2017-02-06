@@ -47,6 +47,7 @@ class m161108_142834_create_company_table extends Migration
             'bonus_link_heading' => $this->string(255)->defaultValue('#bonus# Welcome Bonus'),
             'slider_text' => $this->string(500),
             'slug' => $this->string(255),
+            'user_favorite' => $this->integer(2)->defaultValue(0),
             'status' => $this->integer(2)->defaultValue(1),
             'meta_description' => $this->string(255),
             'meta_keywords' => $this->string(255),

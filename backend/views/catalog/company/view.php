@@ -94,6 +94,18 @@ $attributes = [
         'value'=>$model->pairs_offered
     ],
     [
+        'attribute'=>'user_favorite', 
+        'format'=>'raw',
+        'value'=>$model->user_favorite ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',
+        'type'=>DetailView::INPUT_SWITCH,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'onText' => 'Yes',
+                'offText' => 'No',
+            ]
+        ],
+    ],
+    [
         'attribute'=>'status', 
         'format'=>'raw',
         'value'=>$model->status ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>',

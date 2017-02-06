@@ -79,7 +79,6 @@ class Company extends ActiveRecord
         return [
             [['title', 'website_url', 'meta_keywords', 'meta_description'], 'required'],
             [['bonus_as_value','bonus_offer'], 'required'],
-            [['telephone', 'established', 'regulation', 'min_deposit', 'max_leverage', 'spreads_from', 'pairs_offered', 'us_allowed'], 'required'],
             [['rating'], 'required'],
             [['self_rank','status'], 'integer'],
             [['review','short_description','description','logo_url', 'website_url', 'image_url', 'meta_keywords', 'meta_description'], 'string'],
@@ -87,6 +86,7 @@ class Company extends ActiveRecord
             [['rating'], 'number', 'max' => 10],
             [['min_deposit'], 'number'],
             [['bonus_as_value','established','us_allowed'], 'integer'],
+            [['user_favorite'], 'integer'],
             [['title', 'slug','short_description'], 'string'],
             [['button_text', 'link_text', 'promotion_link_text','bonus_link_heading','slider_text'], 'string'],
             [['temp_image','temp_image_logo'], 'safe'],
