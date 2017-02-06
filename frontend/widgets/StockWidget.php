@@ -50,7 +50,7 @@ class StockWidget extends \yii\base\Widget
                         $name = "NASDAQ100";
                         break;
                     case 'AAPL':
-                        $name = "Apple";
+                        $name = "AAPL";
                         break;
                     case 'GOOGL':
                         $name = "GOOGL";
