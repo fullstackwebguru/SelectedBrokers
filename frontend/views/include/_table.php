@@ -59,7 +59,8 @@ use yii\helpers\Url;
                                           <p class="promo-small"><?= $company->bonus_offer_desc ?></p>
                                           <?php } ?>
                                           <p class="ammount"><?= $company->bonus_offer ?></p>
-                                          <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-deal"> <?= $company->promotion_link_text ?> </a>
+                                          <strong>
+                                          <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-deal"> <?= $company->promotion_link_text ?> </a></strong>
                                         </td>
                                       <?php if ($category->show_regulation) { ?>
                                       <td class="regulations-td">
@@ -87,7 +88,7 @@ use yii\helpers\Url;
                                         </td>
                                       <td class="risk-td" data-value="0">
                                           <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="button custom-btn" target="_blank" title="Visit Site"><?= $company->button_text ?> <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                                          <strong><a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-bonus" target="_blank" title="Get Bonus"><?= $company->link_text ?></a></strong></td>
+                                          <a href="<?= $company->website_url ?>" onclick="trackOutboundLink('<?= $company->title ?>', '<?= $company->website_url ?>', '<?= $catComp->rank+1 ?>'); return false;" class="get-bonus" target="_blank" title="Get Bonus"><?= $company->link_text ?></a></td>
                                     </tr>
 
                               <?php  }  ?>
