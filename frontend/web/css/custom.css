@@ -859,11 +859,11 @@ position: relative;
 }
 
 .secure-image {
-position: absolute;
-left: -67px;
-top: 5px;
-display: block;
-z-index: 7;
+    position: absolute;
+    left: -51px;
+    top: 5px;
+    display: block;
+    z-index: 7;
 }
 
 
