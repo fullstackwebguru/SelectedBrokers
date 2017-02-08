@@ -10,7 +10,7 @@ use frontend\widgets\SideCategory;
 use frontend\widgets\SideTop5;
 use frontend\widgets\Banner;
 
-$this->title = 'Casino -' . $model->title;
+$this->title = 'Review -' . $model->title;
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerMetaTag([
