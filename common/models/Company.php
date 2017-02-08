@@ -166,4 +166,15 @@ class Company extends ActiveRecord
         $sanitizedLinkText = str_replace("#bonus#", $this->bonus_offer, $this->bonus_link_heading);
         return $sanitizedLinkText;
     }
+
+    public function shortDescription() {
+        $len = strlen($this->short_description);
+        $str = $this->short_description;
+        if ($len > 50) {
+            $str = substr($str, 0, 49);
+            $str = $str . "...";
+        }
+
+        return $str;
+    }
 }
