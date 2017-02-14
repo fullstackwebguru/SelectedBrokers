@@ -10,9 +10,13 @@ html,
 body {
     overflow-x: hidden;
 }
+
 body {
-    padding-top: 85px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 85px; 
+    font-family: 'Open Sans', sans-serif;
+    color: #212121;
 }
+
 body.forex-page {
     padding-top: 55px;
 }
@@ -197,12 +201,18 @@ header.carousel .fill {
     background-position: center;
     background-size: cover;
 }
+
+#forex-header .page-header {
+    margin: 5px 0;
+}
+
 .page-header {
     font-size: 31px;
     text-align: center;
 }
+
 #forex-header {
-    padding: 15px 0 5px 0;
+    padding: 15px 0 165px 0;
     margin-bottom: 20px;
     background-image: url("../img/page-header-bg.jpg");
     background-size: cover;
@@ -213,6 +223,11 @@ header.carousel .fill {
     font-weight: normal;
     font-size: 14px;
 }
+
+#toplist-table {
+    margin-top: -180px;
+}
+
 #toplist-table td {
     vertical-align: middle;
 }
@@ -239,13 +254,17 @@ header.carousel .fill {
 }
 .features-td ul {
     list-style-type: none;
+    padding-left: 20px !important;
+    color: #454545;
 }
+
 .features-td ul li {
     margin-bottom: 5px;
 }
 .rating-td .score {
-    font-size: 24px;
+    font-size: 34px;
     font-weight: 100;
+    color: #454545;
 }
 .promo-td .ammount {
     font-weight: 700;
@@ -253,8 +272,10 @@ header.carousel .fill {
     text-transform: uppercase;
 }
 .features-td i {
-    color: #89c34a;
+    color: #454545;
     margin-right: 3px;
+    font-size: 10px;
+    opacity: 0.9;
 }
 .promo-small {
     font-size: 12px;
@@ -290,21 +311,24 @@ header.carousel .fill {
     color: #212121;
 } 
 .custom-btn {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(128, 128, 128, 0.1) inset;
     display: inline-block;
-    padding: 10px 30px;
+    padding: 13px 33px;
     color: #fff;
-    border-radius: 3px;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 20px;
     font-weight: 100;
     background-color: #6ed14f;
     transition: all 0.5s ease-in-out;
 }
+
 .custom-btn i {
     font-size: 26px;
     vertical-align: bottom;
 }
 .get-deal {
     color: #6ed14f;
+    font-weight: bold;
 }
 .get-bonus {
     display: block;
@@ -464,10 +488,12 @@ footer {
 .page-header {
     margin: 20px 0;
 }
+
 .table-filters {
     text-align: right;
-    margin: 25px 0;
+    margin-bottom: 10px;
 }
+
 .table-filters .bootstrap-select {
     margin: 0 !important;
 }
@@ -970,7 +996,7 @@ position: relative;
         float: none;
 }
     .logo-td img {
-        max-width: 130px;
+        max-width: 80px;
     }
     .rank-td, .logo-td {
         padding: 0 !important;
@@ -978,15 +1004,25 @@ position: relative;
     .custom-btn {
         padding: 5px;
     }
-    .mindep-th, .mindep-td, .features-th, .features-td, .rating-th, .rating-td, .promo-th, .promo-td {
+    .mindep-th, .mindep-td, .features-th, .features-td, .rating-th, .rating-td, .promo-th, .promo-td,.regulations-th,.regulations-td,.table-filters {
         display: none;
     }
+
+    #toplist-table {
+        margin-top: -100px;
+    }
+    
     .img-portfolio {
         margin-bottom: 15px;
     }
 
     header.carousel .carousel {
         height: 70%;
+    }
+
+    .custom-btn {  
+        font-size: 16px;
+        font-weight: normal;
     }
 }
 @media(max-width:479px) {
